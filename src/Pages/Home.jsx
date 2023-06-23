@@ -38,6 +38,11 @@ const Home = () => {
         } else if (filters.sort === 'Product Name') {
             return a.product_name.localeCompare(b.product_name)
         }
+        else if (filters.sort === 'Ingredients') {
+            const ingredientsA = a.ingredients.join(', ');
+            const ingredientsB = b.ingredients.join(', ');
+            return ingredientsA.localeCompare(ingredientsB);
+        }
     });
     console.log("o", sorted_data)
     return (
@@ -53,7 +58,7 @@ const Home = () => {
                         <th onClick={sort_handlder}>Product Weight</th>
                         <th onClick={sort_handlder}>Price</th>
                         <th onClick={sort_handlder}>Calories</th>
-                        <th>Ingredients</th>
+                        <th onClick={sort_handlder}>Ingredients</th>
                     </tr>
                 </thead>
                 <tbody>

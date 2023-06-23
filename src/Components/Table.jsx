@@ -6,7 +6,7 @@ const Table = ({ id, product_name, product_weight, price, calories, ingredients 
             <td>{product_weight}</td>
             <td>{price}</td>
             <td>{calories}</td>
-            <td>{ingredients}</td>
+            <td>{ingredients.join(', ')}</td>
         </tr>
     )
 }
