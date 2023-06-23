@@ -26,7 +26,19 @@ const Home = () => {
     }
 
 
-    const sorted_data = filtered_data.sort(function (a, b) { return a.id - b.id });
+    const sorted_data = filtered_data.sort(function (a, b) {
+        if (filters.sort === 'ID') {
+            return b.id - a.id
+        } else if (filters.sort === 'Product Weight') {
+            return b.product_weight - a.product_weight
+        } else if (filters.sort === 'Price') {
+            return b.price - a.price
+        } else if (filters.sort === 'Calories') {
+            return b.calories - a.calories
+        } else if (filters.sort === 'Product Name') {
+            return a.product_name.localeCompare(b.product_name)
+        }
+    });
     console.log("o", sorted_data)
     return (
         <div className="container">
@@ -37,15 +49,15 @@ const Home = () => {
                 <thead>
                     <tr>
                         <th onClick={sort_handlder}>ID</th>
-                        <th>Product Name</th>
-                        <th>Product Weight</th>
-                        <th>Price</th>
-                        <th>Calories</th>
+                        <th onClick={sort_handlder}>Product Name</th>
+                        <th onClick={sort_handlder}>Product Weight</th>
+                        <th onClick={sort_handlder}>Price</th>
+                        <th onClick={sort_handlder}>Calories</th>
                         <th>Ingredients</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filtered_data.map(each_product => <Table {...each_product} />)}
+                    {sorted_data.map(each_product => <Table {...each_product} />)}
                 </tbody>
             </table>
 
